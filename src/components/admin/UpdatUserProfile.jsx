@@ -38,20 +38,17 @@ const UpdatUserProfile = () => {
       .then((result) => {
         console.log(result)
         const user = result.data.user
-        // could have used the nullesh check ?.
-        // populate fields with up to date infomation
+        // populate fields with fresh data
         if (user) {
           setUpdateData((prevState) => ({
             ...prevState,
             email: user.email,
             name: user.displayName,
-            phone: `+44 ${user?.phoneNumber?.slice(3) ?? ''}`, // changing to null causes an err
+            phone: `+44 ${user?.phoneNumber?.slice(3) ?? ''}`,
             emailVerified: user.emailVerified,
             disabled: user.disabled,
             uid: user.uid,
           }))
-
-          console.log(user)
         }
         handleBtnLoader('get-user', false, false)
       })
@@ -80,7 +77,6 @@ const UpdatUserProfile = () => {
     e.preventDefault()
     handleBtnLoader('update-user', true, true)
 
-    console.log(updateData)
     const functions = getFunctions()
     const updateUserProfile = httpsCallable(functions, 'updateUserProfile')
     updateUserProfile(updateData)

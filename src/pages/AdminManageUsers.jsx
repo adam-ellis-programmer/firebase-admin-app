@@ -119,20 +119,19 @@ const AdminManageUsers = () => {
       resetAlertState(2000)
     }
   }
-
-  // we created a copy by using   const updatedData = { }
-  // and not calling in ()
+  // handle checked changes in admin page
   const handleCheckedChanges = (e) => {
     const { id, checked } = e.target
     setAdminCheckData((prevState) => {
+      // create copy of data
       const updatedData = {
         ...prevState,
         [id]: checked,
       }
       const anyTrue = Object.values(updatedData).some((value) => value === true)
-      // we are saying if any values are true
+      //  any values are true
       // when we click on the check boxes then set all checkbox to false
-      setCheckAll(anyTrue === true && false) // onchange check if any are tru and turn off
+      setCheckAll(anyTrue === true && false) // onchange check if any are true and turn false
       // onchange check if any are tru and turn off
       console.log(anyTrue)
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-// move delete logic here
+
 const DeleteUserAlert = ({ handleDelete, setShowConfirm, setEmail }) => {
   const handleBack = () => {
     setShowConfirm(false)

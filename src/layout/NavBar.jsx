@@ -2,6 +2,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { FaBeer, FaBars } from 'react-icons/fa'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import logo from '../imgs/firebase logo-1.png'
 const NavBar = () => {
   const navigate = useNavigate()
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -51,16 +52,17 @@ const NavBar = () => {
       })
   }
 
-  // when re-doing the menu list
-  // have an array of data with the place:
-  // set to mobile or place:main
-  // loop through and find all the items marked main
   return (
     <header>
       <nav>
         <div className="nav-center">
           <div className="nav-header">
-            <div className="logo">logo</div>
+            <div className="logo">
+              <Link to="/">
+                <img className="nav-logo" src={logo} alt="" />
+              </Link>
+            </div>
+
             <button onClick={handleNavOpen} className="toggle-nav">
               <FaBars icon="fa-solid fa-bars" />
             </button>
@@ -81,11 +83,7 @@ const NavBar = () => {
                   logout
                 </li>
               )}
-              <li className="top-nav-li">
-                <Link className="top-nav-link" to="/test">
-                  test
-                </Link>
-              </li>
+
               <li className="top-nav-li">
                 <Link className="top-nav-link" to="/admin">
                   admin
@@ -96,11 +94,7 @@ const NavBar = () => {
                   @me
                 </Link>
               </li>
-              <li className="top-nav-li">
-                <Link className="top-nav-link" to="/img">
-                  img
-                </Link>
-              </li>
+
               {isLoggedIn && (
                 <img src={profileURL} alt="" className="top-nav-profile-img" />
               )}
@@ -131,15 +125,7 @@ const NavBar = () => {
               logout
             </li>
           )}
-          <li className="mobile-nav-li">
-            <Link
-              onClick={() => setIsNavOpen(false)}
-              className="mobile-nav-link"
-              to="/test"
-            >
-              test
-            </Link>
-          </li>
+
           <li className="nav-li">
             <Link
               onClick={() => setIsNavOpen(false)}
@@ -157,16 +143,6 @@ const NavBar = () => {
               to="/me"
             >
               @me
-            </Link>
-          </li>
-
-          <li className="top-nav-li">
-            <Link
-              onClick={() => setIsNavOpen(false)}
-              className="mobile-nav-link"
-              to="/img"
-            >
-              img
             </Link>
           </li>
         </ul>

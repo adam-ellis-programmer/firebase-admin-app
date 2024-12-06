@@ -12,6 +12,14 @@ const Admin = () => {
         <div onClick={() => navigate('/admin-manage-users')} className="admin-box">
           <h3>manage users</h3>
         </div>
+
+        <div className="admin-box">
+          <h3>blank box</h3>
+        </div>
+
+        <div className="admin-box">
+          <h3>blank box</h3>
+        </div>
       </section>
     </div>
   )

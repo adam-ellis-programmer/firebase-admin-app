@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import useCheckLogin from '../hooks/useCheckLogin'
 
-// NOT OUTLET AS WE NEST IN ELEMENT IN APP.JS
+// update to use the outlet as update to react router was made
 const PrivateRoute = ({ children }) => {
   const { loggedIn, checkingStatus, isAdmin } = useCheckLogin()
   console.log(loggedIn)

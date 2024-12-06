@@ -9,8 +9,6 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/
 import UserAlert from '../../alerts/UserAlert'
 
 const NewSignUpPublic = () => {
-  // const auth = getAuth()
-  // console.log(auth)
   const [file, setFile] = useState('')
   const [alertMsg, setAlertMsg] = useState('')
   const [alert, setAlert] = useState(false)
@@ -36,12 +34,6 @@ const NewSignUpPublic = () => {
     console.log(selectedFile)
   }
 
-  /**
-   * When using await, it expects the function to return a Promise. The uploadProfilePicture function
-   * involves multiple asynchronous steps (uploading the file, tracking progress, and getting the download URL). Wrapping these steps in a Promise allows us to use await in a clear and linear fashion when calling uploadProfilePicture
-   */
-  // the steps have to be wrapped in a promise and
-  // returned to the fucnton we will AWAIT on
   const uploadProfilePicture = (uid, file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage()
@@ -142,7 +134,7 @@ const NewSignUpPublic = () => {
         timestamp: serverTimestamp(),
       }
       // const url = await uploadProfilePicture()
-      // only need two objects here
+      // only need two objects here for setDoc
       await setDoc(doc(db, 'users', user.uid), formDataCopy)
       await setDoc(doc(db, 'stats', user.uid), stats)
       // await setDoc(doc(db, 'stats', user.uid), {})

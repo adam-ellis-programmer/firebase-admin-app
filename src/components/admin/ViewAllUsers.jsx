@@ -6,6 +6,7 @@ import { db } from '../../firebase.config'
 import UserLoader from '../../layout/loaders/UserLoader'
 
 /**
+ * **** leave for reference ******* 
  * const UserLoader = () => {
   const skeletons = [];
 

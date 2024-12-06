@@ -6,7 +6,6 @@ import DeleteUserAlert from '../../alerts/DeleteUserAlert'
 import AdminAlert from '../../alerts/AdminAlert'
 import { getStorage, ref, deleteObject } from 'firebase/storage'
 
-//  TODO: HANDLE CASE WHERE THERE IS ONLY THE DEFAULT PROFULE IMG
 const DeleteUser = () => {
   const [btnLoader, setBtnLoader] = useState(false)
 

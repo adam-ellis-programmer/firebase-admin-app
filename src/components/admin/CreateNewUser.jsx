@@ -6,7 +6,6 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/
 import AdminAlert from '../../alerts/AdminAlert'
 
 const CreateNewUser = () => {
-
   const [btnLoader, setBtnLoader] = useState(false)
 
   const [file, setFile] = useState(null)
@@ -60,7 +59,7 @@ const CreateNewUser = () => {
     setBtnLoader(true)
     try {
       const { newName, newEmail, newPhone, newPassword } = createNewUserData
-      // console.log('log one ....')
+
       // Upload the profile picture and get the URL first
       let profilePicture =
         'https://firebasestorage.googleapis.com/v0/b/test-project-e2c7b.appspot.com/o/utils%2F5907.jpg?alt=media&token=9037aa68-b90a-491b-aaf9-28c7ecdafc0e'
@@ -77,17 +76,8 @@ const CreateNewUser = () => {
       })
 
       const newUserUid = res.data.newUser.uid
-      console.log(newUserUid)
-      console.log(res)
-
-      console.log('log three ....')
-
-      // this is where the reject gets handled
-      // The error is then propagated to where the promise is awaited or consumed.
-
-      // ALLREADY IN A TRY CATCH SO TRY TAKING IT OUT
-      // ALLREADY IN A TRY CATCH SO TRY TAKING IT OUT
-      // ALLREADY IN A TRY CATCH SO TRY TAKING IT OUT
+      // console.log(newUserUid)
+      // console.log(res)
       try {
         if (file) {
           profilePicture = await uploadProfilePicture(file, newUserUid)
@@ -95,7 +85,6 @@ const CreateNewUser = () => {
       } catch (error) {
         console.error('Error uploading profile picture with real UID:', error)
       }
-      console.log('log one ....')
 
       // updated file as admin -- as admin
       const updateUserProfilePicture = httpsCallable(
@@ -142,8 +131,6 @@ const CreateNewUser = () => {
       resetAlertState(2000)
       setBtnLoader(false)
       resetState()
-
-      // console.log()
     } catch (error) {
       console.log(error)
       const msg = {

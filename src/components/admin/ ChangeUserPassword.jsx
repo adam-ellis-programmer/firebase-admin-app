@@ -32,8 +32,8 @@ const ChangeUserPassword = () => {
     updateUserPassword({ email, password })
       .then((result) => {
         // Read result of the Cloud Function.
-        console.log(result)
-        console.log('success')
+        // console.log(result)
+        // console.log('success')
         setAlert(true)
         setAlertText('password changed')
         setAlertSuccess(true)
