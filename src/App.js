@@ -1,4 +1,3 @@
-// https://firebase.google.com/docs/auth/web/manage-users?_gl=1*rtlsx3*_up*MQ..*_ga*NTAzNjc5NTM0LjE3MTg0NjQ4NzY.*_ga_CW55HF8NVT*MTcxODQ2NDg3Ni4xLjAuMTcxODQ2NDg3Ni4wLjAuMA..
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
