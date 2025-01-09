@@ -1,9 +1,12 @@
 import React from 'react'
 import PageHeader from '../layout/PageHeader'
 import img from '../imgs/firebase logo-1.png'
+import CheckLogin from '../hooks/useCheckLogin'
 const Home = () => {
+  const { loggedIn, user } = CheckLogin()
+  console.log(loggedIn)
   return (
-    <div>
+    <section>
       <div className="home-page-header-div">
         <PageHeader text={`welcome to firebase admin SDK app`} />
       </div>
@@ -11,7 +14,17 @@ const Home = () => {
       <div className="home-image-container">
         <img src={img} alt="" className="home-logo-img" />
       </div>
-    </div>
+
+      <div className="user-info-div">
+        <p className="user-info-home-p">
+          {loggedIn && (
+            <>
+              Welcome <span>{user?.displayName}</span>, you are now logged in.
+            </>
+          )}
+        </p>
+      </div>
+    </section>
   )
 }
 

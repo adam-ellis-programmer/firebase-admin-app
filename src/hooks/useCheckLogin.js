@@ -6,15 +6,18 @@ const CheckLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
   const [checkingStatus, setCheckingStatus] = useState(true)
+  const [user, setUser] = useState(null)
   useEffect(() => {
     const checkAuth = async () => {
       const auth = getAuth()
       onAuthStateChanged(auth, async (user) => {
         if (user) {
+          console.log(user)
+          setUser(user)
           setLoggedIn(true)
 
           const checkAdmin = await user.getIdTokenResult()
-          const claims = checkAdmin.claims
+          const claims = checkAdmin?.claims
 
           if (claims?.auth?.admin === true) {
             setIsAdmin(true)
@@ -34,6 +37,7 @@ const CheckLogin = () => {
     loggedIn,
     isAdmin,
     checkingStatus,
+    user,
   }
 }
 

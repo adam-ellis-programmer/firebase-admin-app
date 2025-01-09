@@ -752,3 +752,21 @@ nav {
   /* border: 1px solid; */
   margin: 4rem 0;
 }
+
+.user-info-home-div {
+  margin-top: 3rem;
+}
+.user-info-home-p {
+  text-align: center;
+  font-family: var(--primary-font-one);
+  font-size: 1.4rem;
+}
+
+.user-info-home-p span {
+  /* background-color: rgb(41, 71, 116);
+  color: #fff;
+  padding: 0.4rem;
+  border-radius: 5px; */
+
+  text-decoration: underline;
+}

@@ -19,19 +19,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<Signin />} />
-          <Route path="/me" element={<ProfilePage />} />
           <Route path="/email-signin" element={<EmailSignin />} />
           <Route path="/new-signup" element={<NewSignup />} />
           <Route path="/admin-manage-users" element={<AdminManageUsers />} />
 
-          <Route
-            path="/admin"
-            element={
-              <PrivateRoute>
-                <Admin />
-              </PrivateRoute>
-            }
-          />
+          {/* Private Routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/me" element={<ProfilePage />} />
+            <Route path="/admin" element={<Admin />} />
+          </Route>
         </Routes>
       </Router>
     </div>
