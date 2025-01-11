@@ -1,10 +1,10 @@
 import React from 'react'
 import PageHeader from '../layout/PageHeader'
 import img from '../imgs/firebase logo-1.png'
-import CheckLogin from '../hooks/useCheckLogin'
+import useCheckLogin from '../hooks/useCheckLogin'
 const Home = () => {
-  const { loggedIn, user } = CheckLogin()
-  console.log(loggedIn)
+  const { loggedIn, user } = useCheckLogin()
+  // console.log(loggedIn)
   return (
     <section>
       <div className="home-page-header-div">

@@ -11,15 +11,8 @@ const db = admin.firestore() // Initialize Firestore
 // instead of getAuth()
 
 // exports.fetch = require('./func/fetch')
-//  --- USE THE CLAIMS TO CHECK FORM ACCESS HERE
-//  --- MAKE DATABASE CALLS HERE
-//  --- MAKE DATABASE CALLS HERE
-//  --- MAKE DATABASE CALLS HERE
-//  --- MAKE DATABASE CALLS HERE
-//  --- MAKE DATABASE CALLS HERE
-//  --- MAKE DATABASE CALLS HERE
+
 exports.getUser = functions.https.onCall(async (data, context) => {
-  console.log('logged-CONTEXT--->', context)
   try {
     const regUser = await auth.getUserByEmail(data.email)
     console.log(regUser)
@@ -35,7 +28,6 @@ exports.getUser = functions.https.onCall(async (data, context) => {
   }
 })
 
-// what is the difference between https.onCall
 exports.deleteUser = functions.https.onCall(async (data, context) => {
   try {
     // Get user by email
@@ -58,13 +50,7 @@ exports.deleteUser = functions.https.onCall(async (data, context) => {
   }
 })
 
-// MAKE A CHECK HERE FOR DATA.USER === ADMIN || MANAGER
-// MAKE A CHECK HERE FOR DATA.USER === ADMIN || MANAGER
-// MAKE A CHECK HERE FOR DATA.USER === ADMIN || MANAGER
-// MAKE A CHECK HERE FOR DATA.USER === ADMIN || MANAGER
 exports.makeNewUserAsAdmin = functions.https.onCall((data, context) => {
-  console.log('logged-data', data)
-  console.log('logged-CONTEXT--->', context)
   return auth
     .createUser({
       email: data.email,
@@ -125,7 +111,6 @@ exports.deleteUser = functions.https.onCall(async (data, context) => {
   return auth
     .getUserByEmail(data.email)
     .then((userRecord) => {
-      // See the UserRecord reference doc for the contents of userRecord.
       console.log(`Successfully fetched user data: ${userRecord.toJSON()}`)
       return userRecord
     })
@@ -177,7 +162,7 @@ exports.updateUserProfile = functions.https.onCall((data, context) => {
 exports.getAllUsers = functions.https.onCall(async (data, context) => {
   const users = []
 
-  // they wrapped this in a fucntion to specificly
+  // they wrapped this in a fucntion to specifically
   // call nextPageToken
   const listAllUsers = async (nextPageToken) => {
     try {
@@ -213,7 +198,6 @@ exports.updateUserProfilePicture = functions.https.onCall((data, context) => {
       throw new functions.https.HttpsError('internal', 'Error updating profile', error)
     })
 })
-// see if we can do the same thing but wirh require
 
 // prettier-ignore
 exports.upDateProfilePicture = functions.https.onCall((data, context) => {

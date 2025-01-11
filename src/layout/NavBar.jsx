@@ -3,41 +3,47 @@ import { useEffect, useState } from 'react'
 import { FaBeer, FaBars } from 'react-icons/fa'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import logo from '../imgs/firebase logo-1.png'
+import useCheckLogin from '../hooks/useCheckLogin'
 const NavBar = () => {
   const navigate = useNavigate()
+  const { user, loggedIn } = useCheckLogin()
+
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [profileURL, setProfileURL] = useState('')
+
+  // ****** leave for reference ****** //
+
+  // const auth = getAuth()
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setIsLoggedIn(true)
+  //       setProfileURL(user.photoURL)
+  //       const uid = user.uid
+  //     } else {
+  //       // User is signed out
+  //       setIsLoggedIn(false)
+  //     }
+  //   })
+  //   return () => {}
+  // }, [auth, isLoggedIn])
+
   const handleNavOpen = () => {
     setIsNavOpen((prev) => !prev)
   }
 
-  const auth = getAuth()
-  // console.log(auth && auth?.currentUser?.uid)
-
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true)
-        setProfileURL(user.photoURL)
-        // console.log(user.photoURL)
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid
-        // console.log(user)
-
-        // ...
-      } else {
-        // User is signed out
-        setIsLoggedIn(false)
-        // safty if do not want to show any other pages
-
-        // ...
-      }
-    })
-
+    if (user) {
+      setIsLoggedIn(true)
+      setProfileURL(user.photoURL)
+      const uid = user.uid
+    } else {
+      // User is now signed out
+      setIsLoggedIn(false)
+    }
     return () => {}
-  }, [auth, isLoggedIn])
+  }, [user])
 
   const handleLogout = () => {
     console.log('logged out')

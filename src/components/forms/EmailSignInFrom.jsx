@@ -31,7 +31,7 @@ const EmailSignInFrom = () => {
       const auth = getAuth()
       const user = await signInWithEmailAndPassword(auth, email, password)
       navigate('/')
-      console.log('USER-img-url', user.user.photoURL)
+      // console.log('USER-img-url', user.user.photoURL)
     } catch (error) {
       setAlert(true)
       resetAlerts(2000)

@@ -1,44 +1,48 @@
 import { useState, useEffect } from 'react'
-// https://firebase.google.com/docs/reference/js/auth.user
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-const CheckLogin = () => {
+const useCheckLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
   const [checkingStatus, setCheckingStatus] = useState(true)
   const [user, setUser] = useState(null)
+  const auth = getAuth()
+
   useEffect(() => {
-    const checkAuth = async () => {
-      const auth = getAuth()
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          console.log(user)
-          setUser(user)
-          setLoggedIn(true)
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user)
+        setLoggedIn(true)
 
-          const checkAdmin = await user.getIdTokenResult()
-          const claims = checkAdmin?.claims
+        const checkAdmin = await user.getIdTokenResult()
+        const claims = checkAdmin?.claims
 
-          if (claims?.auth?.admin === true) {
-            setIsAdmin(true)
-          } else {
-            setIsAdmin(false)
-          }
-          const uid = user.uid
+        // chek for admin only
+        if (claims?.auth?.admin === true) {
+          setIsAdmin(true)
+        } else {
+          setIsAdmin(false)
         }
+      } else {
+        // Reset states when the user logs out
+        setUser(null)
+        setLoggedIn(false)
+        setIsAdmin(false)
+      }
 
-        setCheckingStatus(false)
-      })
-    }
+      setCheckingStatus(false)
+    })
 
-    checkAuth()
-  }, [])
+    return () => unsubscribe() 
+  }, [auth])
+
   return {
     loggedIn,
     isAdmin,
     checkingStatus,
+    // if no user we set null
     user,
   }
 }
 
-export default CheckLogin
+export default useCheckLogin

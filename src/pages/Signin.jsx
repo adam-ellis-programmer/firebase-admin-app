@@ -50,6 +50,7 @@ const Signin = () => {
           <FaGoogle className="sign-in-icon" icon="fa-brands fa-google" />
         </div> */}
         <SigninWithGoogle />
+        
         <div onClick={() => navigate('/new-signup')} className="sign-in-box">
           <FaUserPlus className="sign-in-icon" icon="fa-regular fa-user-plus" />
         </div>

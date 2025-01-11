@@ -34,7 +34,7 @@ const ViewAllUsers = () => {
   return (
     <div className="view-users-div">
       <div className="view-users-count">{regUsers.length}</div>
-      <SectionHeader text={`view all user`} />
+      <SectionHeader text={`view all users`} />
       {regUsers && regUsers.map((user) => <AdminUserCard key={user.uid} user={user} />)}
     </div>
   )
